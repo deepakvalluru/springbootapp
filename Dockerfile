@@ -10,4 +10,4 @@ RUN mvn install
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/springbootapp*.jar /app.jar
-CMD ["/usr/bin/java", "-jar", "/app.jar"]
+CMD ["/usr/bin/java", "-jar", "-Dspring.profiles.active=prod", "/app.jar"]
