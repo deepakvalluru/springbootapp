@@ -2,15 +2,30 @@ package org.deepak.persistence.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table ( name = "product" )
 public class Product
 {
-   private long id;
-   
+   @Id
+   @GeneratedValue ( strategy = GenerationType.AUTO )
+   @Column ( name = "id", unique = true, nullable = false )
+   private long   id;
+
+   @Column ( name = "unique_key", unique = true, nullable = false )
    private String uniqueKey;
-   
+
+   @Column ( name = "name", unique = false, nullable = false )
    private String name;
-   
-   private float price;
+
+   @Column ( name = "price", unique = false, nullable = true )
+   private float  price;
 
    public Product( String name, float price )
    {
@@ -18,10 +33,10 @@ public class Product
       this.name = name;
       this.price = price;
    }
-   
+
    public Product()
    {
-      
+
    }
 
    /**
@@ -87,5 +102,5 @@ public class Product
    {
       this.price = price;
    }
-   
+
 }

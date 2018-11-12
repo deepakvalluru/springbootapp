@@ -1,19 +1,22 @@
 package org.deepak.persistence.repo;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.deepak.persistence.model.Product;
+import org.springframework.data.repository.CrudRepository;
 
-public class ProductRepository
+@Transactional
+public interface ProductRepository extends CrudRepository< Product, Long >
 {
-   public static List< Product > getAllProducts()
-   {
-      return Stream.< Product > builder()
-                   .add( new Product( "product1", 10 ) )
-                   .add( new Product( "product2", 15 ) )
-                   .build()
-                   .collect( Collectors.toList() );
-   }
+   Optional< Product > findById( Long id );
+   Product findByUniqueKey( String key );
+   List< Product > findAll();
+   Product save( Product product );
+   List< Product > findAllByName( String name );
+   List< Product > findByNameContainingIgnoreCase( String name );
+   boolean existsById( Long id );
+   boolean existsByUniqueKey( String key );
 }
