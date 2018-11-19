@@ -2,7 +2,9 @@
 FROM openjdk:8-jre-alpine
 # copy application WAR (with libraries inside)
 COPY target/springbootapp-*.jar /app.jar
-# Environment variables
-#ENV GOOGLE_APPLICATION_CREDENTIALS=/C/Users/Deepu/eclipse-workspace/springbootapp/src/main/resources/springbootapp-222004-c5a98d98dd78.json
+# copy secret key to connect to Google Cloud SQL 
+COPY src/main/resources/creds.json /creds.json
+# Set Environment variables
+ENV GOOGLE_APPLICATION_CREDENTIALS=creds.json
 # specify default command
 CMD ["/usr/bin/java", "-jar", "/app.jar"]
