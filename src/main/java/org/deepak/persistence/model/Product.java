@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @Table ( name = "product" )
 public class Product
@@ -101,6 +103,17 @@ public class Product
    public void setPrice( float price )
    {
       this.price = price;
+   }
+   
+   @Override
+   public String toString()
+   {
+      return new ToStringBuilder( this ).append( "id", id )
+                                        .append( "key", uniqueKey )
+                                        .append( "name", name )
+                                        .append( "price", price )
+                                        .build();
+      
    }
 
 }

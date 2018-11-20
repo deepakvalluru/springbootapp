@@ -19,3 +19,8 @@ docker rm $(docker ps -a -f status=exited -f status=created -q)
 
 // find container address
 docker inspect <container id> | grep "IPAddress"
+
+//find docker machine ip address. use this instead of local host when running the requests
+docker-machine ip
+****If we don't want to do this then map docker machine ip and port to host ip. Here's sample link**** 
+****https://stackoverflow.com/questions/35372399/connect-to-docker-machine-using-localhost****
